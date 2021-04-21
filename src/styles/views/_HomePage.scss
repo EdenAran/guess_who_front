@@ -1,0 +1,17 @@
+.home {
+    grid-column: 2;
+    text-align: center;
+
+    .signup {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+        height: 100px;
+        margin: 50px auto;
+        justify-content: space-around;
+        button{
+            width: 50px;
+            margin: 0 auto;
+        }
+    }
+}

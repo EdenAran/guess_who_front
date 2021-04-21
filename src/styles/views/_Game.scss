@@ -1,0 +1,17 @@
+.game{
+    grid-column: 2;
+
+    .actions{
+        margin: 10px auto;
+        width: 200px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .players{
+        display: flex;
+        width: 500px;
+        margin: 10px auto;
+        justify-content: space-between;
+    }
+}

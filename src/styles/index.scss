@@ -1,0 +1,16 @@
+
+
+@import './base.scss';
+@import './app.scss';
+
+
+// CMPS
+@import './cmps/AppHeader';
+@import './cmps/TileList';
+@import './cmps/TilePreview';
+@import './cmps/Loader';
+
+// VIEWS
+@import './views/HomePage';
+@import './views/Game';
+@import './views/Rooms';
