@@ -1,5 +1,5 @@
 import { useHistory } from "react-router"
-import { useEffect, useState } from "react/cjs/react.development"
+import { useEffect } from "react"
 import { gameService } from "../services/game.service"
 import { Loader } from "../cmps/Loader";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +7,6 @@ import { addGame, getGames, updateGame } from "../store/actions/gameActions";
 
 export function Rooms() {
 
-    // const [games, setGames] = useState(null);
     const history = useHistory();
     const user = useSelector(state => state.userReducer.user);
     const games = useSelector(state => state.gameReducer.games);
@@ -21,7 +20,6 @@ export function Rooms() {
     const startGame = async () => {
         const game = await dispatch(addGame(user))
         await dispatch(getGames())
-        console.log('game:', game)
         history.push(`/game/${game._id}`)
     }
 

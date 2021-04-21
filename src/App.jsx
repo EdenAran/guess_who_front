@@ -4,14 +4,14 @@ import { Game } from './views/Game';
 import { Rooms } from './views/Rooms';
 import { HomePage } from './views/HomePage';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react/cjs/react.development';
+import { useEffect } from 'react';
 import { getUser } from './store/actions/userActions';
 import { getGames } from './store/actions/gameActions';
 import { socketService } from './services/socket.service';
 
 
 
-export function App() {
+function App() {
 
   const user = useSelector(state => state.userReducer.user);
   const dispatch = useDispatch();

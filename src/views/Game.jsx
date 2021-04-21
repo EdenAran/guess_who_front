@@ -4,9 +4,8 @@ import { useHistory, useParams } from "react-router";
 import { Loader } from "../cmps/Loader";
 import { TileList } from "../cmps/TileList";
 import { TilePreview } from "../cmps/TilePreview";
-import { gameService } from "../services/game.service";
 import { socketService } from "../services/socket.service";
-import { getGames, removeGame, updateGame } from "../store/actions/gameActions";
+import { removeGame, updateGame } from "../store/actions/gameActions";
 
 export function Game() {
     const { id } = useParams();
@@ -29,8 +28,7 @@ export function Game() {
         setSelectedTile(tile)
         setPlayer(currPlayer)
         socketService.emit('joined game', currGame._id )
-        socketService.on('delete game', (gameId) => {
-            console.log('deleted', gameId, currGame)
+        socketService.on('delete game', () => {
             history.push('/room')
         })
         // eslint-disable-next-line
@@ -42,20 +40,9 @@ export function Game() {
         setGame(currGame);
     }, [games, id])
 
-    // const startGame = () => {
-    //     if (game.player1.id && game.player2.id) {
-    //         setIsStart(true)
-    //         socketService.emit('game updated');
-    //     } else {
-    //         setIsShowErr(true)
-    //         setTimeout(() => setIsShowErr(false), 3000)
-    //     }
-    // }
-
     const setTilesLeft = (currGame, currPlayer = player) => {
         currGame[currPlayer].tilesLeft = 0;
         currGame[currPlayer].tiles.forEach(tile => { if (tile.isShown) currGame[currPlayer].tilesLeft++ });
-        console.log('currGame[currPlayer].tiles:', currGame[currPlayer].tilesLeft)
         dispatch(updateGame(currGame))
     }
 

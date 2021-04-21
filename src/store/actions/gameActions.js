@@ -4,7 +4,6 @@ import { socketService } from "../../services/socket.service"
 export function getGames() {
     return async dispatch => {
         const games = await gameService.getGames()
-        console.log('games:', games)
         dispatch({ type: 'SET_GAMES', games })
     }
 }
