@@ -5,7 +5,7 @@ import { Loader } from "../cmps/Loader";
 import { TileList } from "../cmps/TileList";
 import { TilePreview } from "../cmps/TilePreview";
 import { socketService } from "../services/socket.service";
-import { removeGame, updateGame } from "../store/actions/gameActions";
+import { getGames, removeGame, updateGame } from "../store/actions/gameActions";
 
 export function Game() {
     const { id } = useParams();
@@ -21,14 +21,16 @@ export function Game() {
 
     useEffect(() => {
         const currGame = games.find(game => game._id === id)
-        const tile = currGame.tiles[Math.floor(Math.random() * 25 + 1)]
         const currPlayer = currGame.player1.id === user.id ? 'player1' : currGame.player2.id === user.id ? 'player2' : null;
-        if (currPlayer) currGame[currPlayer].tiles = currGame.tiles;
-        setTilesLeft(currGame, currPlayer)
-        setSelectedTile(tile)
+        if (currPlayer) {
+            currGame[currPlayer].tiles = currGame.tiles;
+            setTilesLeft(currGame, currPlayer)
+            setSelectedTile(currGame.tiles[currGame.selectedTilesIdx[currPlayer]])
+        }
         setPlayer(currPlayer)
-        socketService.emit('joined game', currGame._id )
+        socketService.emit('joined game', currGame._id)
         socketService.on('delete game', () => {
+            dispatch(getGames())
             history.push('/room')
         })
         // eslint-disable-next-line
@@ -80,9 +82,11 @@ export function Game() {
                             <h3>player2: {game.player2.username || '----'}</h3> <h4>Tiles Left: {game.player2.tilesLeft}</h4>
                         </div>
                     </div>
-                    {isStart && player && (<>
-                        <TilePreview tile={selectedTile} isMain={true} />
-                        <TileList tiles={game[player].tiles} toggleIsShown={toggleIsShown} />
+                    {isStart && (<>
+                        {player && <TilePreview tile={selectedTile} isMain={true} />}
+                        {player && <TileList tiles={game[player].tiles} toggleIsShown={toggleIsShown} />}
+                        {!player && <TileList tiles={game.tiles} toggleIsShown={()=>{}} />}
+                        
                     </>)}
                 </div>
             }

@@ -4,10 +4,10 @@ export function AppHeader() {
     return (
         <div className="header">
             <NavLink className="logo" to="/"><img  src={require('../assets/logo.jpg').default} alt=""/></NavLink>
-            <nav>
+            {/* <nav>
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/rooms">Rooms</NavLink>
-            </nav>
+            </nav> */}
         </div>
     )
 }

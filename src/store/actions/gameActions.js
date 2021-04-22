@@ -8,12 +8,11 @@ export function getGames() {
     }
 }
 
-export function addGame(user) {
+export function addGame(user, numOfTiles) {
     return async dispatch => {
-        const game = await gameService.setGame(user)
+        const game = await gameService.setGame(user, numOfTiles)
         socketService.emit('game updated');
         getGames()
-        // dispatch({ type: 'ADD_GAME', game })
         return game
     }
 }

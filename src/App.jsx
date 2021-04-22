@@ -1,7 +1,6 @@
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import { AppHeader } from './cmps/AppHeader';
 import { Game } from './views/Game';
-import { Rooms } from './views/Rooms';
 import { HomePage } from './views/HomePage';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -35,7 +34,6 @@ function App() {
         <AppHeader />
         <Switch>
           <PrivateRoute user={user} path="/game/:id" component={Game}></PrivateRoute>
-          <PrivateRoute user={user} path="/rooms" component={Rooms}></PrivateRoute>
           <Route path="/" component={HomePage}></Route>
         </Switch>
       </Router>

@@ -17,8 +17,8 @@ function getById(id) {
     return httpService.get(`game/${id}`)
 }
 
-function setGame(user) {
-    return httpService.post('game/', { user })
+function setGame(user,numOfTiles) {
+    return httpService.post('game/', { user, numOfTiles })
 }
 
 function remove(id){
