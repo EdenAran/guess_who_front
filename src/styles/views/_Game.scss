@@ -1,17 +1,25 @@
-.game{
+.game {
     grid-column: 2;
 
-    .actions{
+    .actions {
         margin: 10px auto;
         width: 200px;
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
-    .players{
+
+    .players {
         display: flex;
         width: 500px;
         margin: 10px auto;
         justify-content: space-between;
+    }
+
+    @media (max-width: 600px) {
+        .players,
+        .actions {
+            width: 95%;
+        }
     }
 }
