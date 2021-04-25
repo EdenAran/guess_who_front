@@ -14,6 +14,7 @@ export function Game() {
     const [game, setGame] = useState();
     const [selectedTile, setSelectedTile] = useState();
     const [isStart, setIsStart] = useState(false);
+    const [isMarking, setIsMarking] = useState(false);
     const [isShowSelectedTiles, setIsShowSelectedTiles] = useState(false);
     const [player, setPlayer] = useState(null);
     const [moves, setMoves] = useState([]);
@@ -56,12 +57,17 @@ export function Game() {
 
     const toggleIsShown = (tile) => {
         const currTile = { ...tile };
-        currTile.isShown = !currTile.isShown;
+        if (isMarking && currTile.isShown) {
+            currTile.isMarked = !currTile.isMarked;
+        } else {
+            currTile.isShown = !currTile.isShown;
+            if (currTile.isMarked) currTile.isMarked = false;
+            setMoves([...moves, currTile]);
+        }
         const tileIdx = game.tiles.findIndex(tile => tile.name === currTile.name);
         const currGame = { ...game };
         currGame[player].tiles.splice(tileIdx, 1, currTile);
         setTilesLeft(currGame);
-        setMoves([...moves, currTile]);
     }
 
     const undoMove = () => {
@@ -77,10 +83,11 @@ export function Game() {
             {!game && <Loader />}
             { game &&
                 <div className="game">
-                    <button onClick={()=>history.push('/')}>Back to home</button>
+                    <button onClick={() => history.push('/')}>Go Back</button>
                     <div className="actions">
                         <button className="delete-btn" onClick={DeleteGame}>Delete game</button>
                         <button disabled={!moves.length} onClick={undoMove}>Undo</button>
+                        <button onClick={() => setIsMarking(!isMarking)}>{isMarking ? 'Stop marking' : 'Mark as maybe'}</button>
                     </div>
                     <div className="players">
                         <div>

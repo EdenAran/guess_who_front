@@ -23,6 +23,9 @@
         &.selected {
             transform: scaleY(0.05)
         }
+        &.marked {
+            filter: blur(2px)
+        }
     }
 
     h2 {

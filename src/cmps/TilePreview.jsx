@@ -9,11 +9,12 @@ export function TilePreview({ tile, isMain = false, toggleIsShown }) {
     //     newTile.isShown = !newTile.isShown;
     //     setCurrTile({ ...newTile });
     // }
-
+    let className = tile.isShown? '' : 'selected';
+    className+= tile.isMarked ? ' marked' : ''
     return (
         <>
             { !isMain && <div className="tile-preview" onClick={() => toggleIsShown(tile)}>
-                <img className={!tile.isShown ? 'selected' : ''} src={require(`../assets/imgs/${tile.name}.jpg`).default} alt="" />
+                <img className={className} src={require(`../assets/imgs/${tile.name}.jpg`).default} alt="" />
                 <h2>{tile.name}</h2>
             </div>}
             { isMain && <div className="tile-preview main">
