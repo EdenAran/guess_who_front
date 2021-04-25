@@ -1,16 +1,15 @@
 import { useHistory } from "react-router"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { gameService } from "../services/game.service"
 import { Loader } from "./Loader";
 import { useDispatch, useSelector } from "react-redux";
-import { addGame, getGames, updateGame } from "../store/actions/gameActions";
+import { getGames, updateGame } from "../store/actions/gameActions";
 import { GameAdd } from "./GameAdd";
 import { socketService } from "../services/socket.service";
 
-export function Rooms() {
+export function Rooms({ user }) {
 
     const history = useHistory();
-    const user = useSelector(state => state.userReducer.user);
     const games = useSelector(state => state.gameReducer.games);
     const dispatch = useDispatch();
     const [isAdding, setIsAdding] = useState(false);
@@ -36,7 +35,7 @@ export function Rooms() {
         <div className="rooms">
             <h2>Choose a game to join or start a new one</h2>
             <button onClick={() => setIsAdding(true)}>Add a new game</button>
-            {isAdding && <GameAdd createGame={createGame} />}
+            {isAdding && <GameAdd createGame={createGame} closeAdding={() => setIsAdding(!isAdding)} />}
             <ul>
                 {!games && <Loader />}
                 {games && games.map(game => <li className="room" key={game._id} >
@@ -44,7 +43,7 @@ export function Rooms() {
                     <h6>VS</h6>
                     <h4>{game.player2.username || '----'}</h4>
                     <h5>{game.tiles.length} Tiles</h5>
-                    <button onClick={() => joinGame(game)}>{!game.player2.id ? 'Join' : 'Watch'}</button>
+                    <button onClick={() => joinGame(game)}>{!game.player2.id ? 'Join' : game.player1.id === user.id || game.player2.id === user.id ? 'Continue' : 'Watch'}</button>
                     {/* <button onClick={() => joinGame(game)} disabled={game.player1.id !== user.id && game.player2.id && game.player2.id !== user.id}>Join</button> */}
                 </li>)}
             </ul>

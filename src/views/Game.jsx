@@ -14,11 +14,11 @@ export function Game() {
     const [game, setGame] = useState();
     const [selectedTile, setSelectedTile] = useState();
     const [isStart, setIsStart] = useState(false);
-    // const [isShowErr, setIsShowErr] = useState(false);
-    const [player, setPlayer] = useState(null)
+    const [isShowSelectedTiles, setIsShowSelectedTiles] = useState(false);
+    const [player, setPlayer] = useState(null);
+    const [moves, setMoves] = useState([]);
     const games = useSelector(state => state.gameReducer.games)
     const user = useSelector(state => state.userReducer.user)
-
     useEffect(() => {
         const currGame = games.find(game => game._id === id)
         const currPlayer = currGame.player1.id === user.id ? 'player1' : currGame.player2.id === user.id ? 'player2' : null;
@@ -57,24 +57,32 @@ export function Game() {
     const toggleIsShown = (tile) => {
         const currTile = { ...tile };
         currTile.isShown = !currTile.isShown;
-        const tileIdx = game.tiles.findIndex(tile => tile.name === currTile.name)
-        const currGame = { ...game }
-        currGame[player].tiles.splice(tileIdx, 1, currTile)
+        const tileIdx = game.tiles.findIndex(tile => tile.name === currTile.name);
+        const currGame = { ...game };
+        currGame[player].tiles.splice(tileIdx, 1, currTile);
         setTilesLeft(currGame);
+        setMoves([...moves, currTile]);
     }
+
+    const undoMove = () => {
+        const currMoves = [...moves];
+        const lastMove = currMoves.splice(-1, 1)[0];
+        toggleIsShown(lastMove);
+        setMoves(currMoves);
+
+    }
+
     return (
         <>
             {!game && <Loader />}
             { game &&
                 <div className="game">
+                    <button onClick={()=>history.push('/')}>Back to home</button>
                     <div className="actions">
                         <button className="delete-btn" onClick={DeleteGame}>Delete game</button>
-                        {/* <button className="start-btn" disabled={isStart} onClick={startGame}>Start Game</button> */}
-                        {/* {isShowErr && <div className="err-msg">Waiting for 2nd player</div>} */}
+                        <button disabled={!moves.length} onClick={undoMove}>Undo</button>
                     </div>
                     <div className="players">
-                        {/* <h3>player1: {game.player1.username}</h3>
-                        <h3>player2: {game.player2.username || '----'}</h3> */}
                         <div>
                             <h3>player1: {game.player1.username}</h3> <h4>Tiles Left: {game.player1.tilesLeft}</h4>
                         </div>
@@ -83,10 +91,19 @@ export function Game() {
                         </div>
                     </div>
                     {isStart && (<>
-                        {player && <TilePreview tile={selectedTile} isMain={true} />}
-                        {player && <TileList tiles={game[player].tiles} toggleIsShown={toggleIsShown} />}
-                        {!player && <TileList tiles={game.tiles} toggleIsShown={()=>{}} />}
-                        
+                        {player && (<>
+                            <TilePreview tile={selectedTile} isMain={true} />
+                            <TileList tiles={game[player].tiles} toggleIsShown={toggleIsShown} />
+                        </>)}
+                        {!player && (<>
+                            <button onClick={() => setIsShowSelectedTiles(!isShowSelectedTiles)}>{isShowSelectedTiles ? 'Hide' : 'Reveal'} Selected Tiles</button>
+                            {isShowSelectedTiles && <div className="flex">
+                                <TilePreview tile={game.tiles[game.selectedTilesIdx.player1]} isMain={true} />
+                                <TilePreview tile={game.tiles[game.selectedTilesIdx.player2]} isMain={true} />
+                            </div>}
+                            <TileList tiles={game.tiles} toggleIsShown={() => { }} />
+                        </>)}
+
                     </>)}
                 </div>
             }

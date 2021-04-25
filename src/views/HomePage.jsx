@@ -27,7 +27,7 @@ export const HomePage = () => {
                     <button>Login</button>
                 </form>
             )}
-            {user && <Rooms />}
+            {user && <Rooms user={user}/>}
         </div>
     )
 }

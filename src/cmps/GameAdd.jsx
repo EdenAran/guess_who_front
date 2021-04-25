@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export function GameAdd({ createGame }) {
+export function GameAdd({ createGame, closeAdding }) {
 
     const [numOfTiles, setNumOfTiles] = useState(25);
 
@@ -20,6 +20,7 @@ export function GameAdd({ createGame }) {
             <button type="button" onClick={() => setTiles(+1)}>+</button>
             <h6>{numOfTiles}</h6>
             <button>Start the game</button>
+            <button onClick={closeAdding}>Cancel</button>
         </form>
     )
 }
