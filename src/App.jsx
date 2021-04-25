@@ -24,6 +24,8 @@ function App() {
     // eslint-disable-next-line
   }, [])
 
+ 
+
   const PrivateRoute = (props) => {
     return props.user ? <Route {...props} /> : <Redirect to="/" />
   }
@@ -31,7 +33,7 @@ function App() {
   return (
     <div className="main-app">
       <Router>
-        <AppHeader />
+        <AppHeader user={user} dispatch={dispatch}/>
         <Switch>
           <PrivateRoute user={user} path="/game/:id" component={Game}></PrivateRoute>
           <Route path="/" component={HomePage}></Route>

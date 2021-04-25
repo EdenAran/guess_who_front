@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { signup } from "../store/actions/userActions"
+import { logout, signup } from "../store/actions/userActions"
 import { Rooms } from "../cmps/Rooms";
 
 export const HomePage = () => {
@@ -16,9 +16,12 @@ export const HomePage = () => {
         <div className="home">
             <h1>Guess-Who</h1>
             {user && (
-                <div className="user-details">
-                    <h2>Hello {user.username}</h2>
-                </div>
+                <>
+                    <div className="user-details">
+                        <h2>Hello {user.username}</h2>
+                    </div>
+                    <button onClick={() => dispatch(logout())}>Logout</button>
+                </>
             )}
             {!user && (
                 <form className="signup" onSubmit={signupUser}>
@@ -27,7 +30,7 @@ export const HomePage = () => {
                     <button>Login</button>
                 </form>
             )}
-            {user && <Rooms user={user}/>}
+            {user && <Rooms user={user} />}
         </div>
     )
 }

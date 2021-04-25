@@ -20,7 +20,7 @@ export function GameAdd({ createGame, closeAdding }) {
             <button type="button" onClick={() => setTiles(+1)}>+</button>
             <h6>{numOfTiles}</h6>
             <button>Start the game</button>
-            <button onClick={closeAdding}>Cancel</button>
+            <button type="button" onClick={closeAdding}>Cancel</button>
         </form>
     )
 }
