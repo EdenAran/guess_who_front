@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
+import { HamburgerBtn } from "../cmps/HamburgerBtn";
 import { Loader } from "../cmps/Loader";
 import { TileList } from "../cmps/TileList";
 import { TilePreview } from "../cmps/TilePreview";
@@ -83,18 +84,18 @@ export function Game() {
             {!game && <Loader />}
             { game &&
                 <div className="game">
-                    <button onClick={() => history.push('/')}>Go Back</button>
                     <div className="actions">
+                    <button className="back-btn" onClick={() => history.push('/')}>Go Back</button>
                         <button className="delete-btn" onClick={DeleteGame}>Delete game</button>
                         <button disabled={!moves.length} onClick={undoMove}>Undo</button>
-                        <button onClick={() => setIsMarking(!isMarking)}>{isMarking ? 'Stop marking' : 'Mark as maybe'}</button>
+                        <button disabled={!player} onClick={() => setIsMarking(!isMarking)}>{isMarking ? 'Stop marking' : 'Mark as maybe'}</button>
                     </div>
                     <div className="players">
                         <div>
-                            <h3>player1: {game.player1.username}</h3> <h4>Tiles Left: {game.player1.tilesLeft}</h4>
+                            <h3>{game.player1.username}</h3><h4>{game.player1.tilesLeft} Tiles left</h4>
                         </div>
                         <div>
-                            <h3>player2: {game.player2.username || '----'}</h3> <h4>Tiles Left: {game.player2.tilesLeft}</h4>
+                            <h3>{game.player2.username || '----'}</h3><h4>{game.player2.tilesLeft} Tiles left</h4>
                         </div>
                     </div>
                     {isStart && (<>

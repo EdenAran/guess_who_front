@@ -1,15 +1,22 @@
 
-
-@import './base.scss';
-@import './app.scss';
-@import './helpers.scss';
-
+// SETUP
+@import 'setup/typography';
+@import 'setup/variables';
+@import 'setup/mixins';
+@import 'setup/functions';
+@import 'setup/animations';
+// BASICS
+@import 'basics/helpers';
+@import 'basics/base';
+@import 'basics/layout';
+@import 'basics/scrollbar';
 
 // CMPS
 @import './cmps/AppHeader';
 @import './cmps/TileList';
 @import './cmps/TilePreview';
 @import './cmps/Loader';
+@import './cmps/HamburgerBtn';
 
 // VIEWS
 @import './views/HomePage';

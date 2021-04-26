@@ -1,0 +1,62 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.8;
+    overflow-y: hidden;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    font-weight: normal;
+    line-height: 1.3;
+}
+
+h1 {
+    font-size: em(66px, 16px);
+}
+
+p {
+    margin: 0 0 1em;
+    max-width: 54ch;
+}
+
+img {
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+}
+
+button {
+    font-family: segoe;
+    padding: 5px 10px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin: 0;
+}
+
+textarea {
+    resize: none;
+}

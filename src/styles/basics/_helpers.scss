@@ -1,0 +1,146 @@
+.site-block {
+    margin-bottom: rem(20px);
+}
+
+// Aspect ratios
+.ratio-16-9 {
+    @include aspect-ratio(100, 56);
+}
+
+.ratio-square {
+    @include aspect-ratio(100, 100);
+}
+
+.ratio-card {
+    @include aspect-ratio(100, 80);
+}
+
+.ratio-poster {
+    @include aspect-ratio(100, 150);
+}
+
+// Flex
+.flex {
+    display: flex;
+}
+
+.f-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.f-a-center {
+    align-items: center;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.f-col {
+    flex-direction: column;
+}
+
+.f-s-between {
+    justify-content: space-between;
+}
+
+.f-s-around {
+    justify-content: space-around;
+}
+
+.f-s-evenly {
+    justify-content: space-evenly;
+}
+
+// Drag
+.ghost {
+    position: relative;
+    border-radius: 5px;
+    opacity: 0.2;
+
+    &::before {
+        content: "";
+        border-radius: 5px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: rgba(194, 194, 194, 1);
+    }
+
+    .card-header {
+        border-radius: 6px;
+    }
+
+    cursor: pointer !important;
+}
+
+.drag {
+    transform: rotate(4deg);
+    opacity: 1;
+
+    &::before {
+        content: "";
+        border-radius: 5px;
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        opacity: 1;
+        background-color: white;
+    }
+}
+
+// Router-Links
+.router-link-active {
+    font-weight: 600;
+}
+
+//Custom Elements
+.color-dropdown {
+    top: 470px !important;
+
+    button {
+        box-shadow: unset;
+    }
+}
+
+.el-button.el-picker-panel__link-btn.el-button--text.el-button--mini {
+    visibility: hidden;
+}
+
+// SCREEN
+.screen {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.6;
+    z-index: 2;
+    display: none;
+}
+
+.el-checkbox .el-checkbox__input .el-checkbox__inner {
+    width: 18px;
+    height: 18px;
+}
+
+.el-checkbox__input.is-checked .el-checkbox__inner {
+    width: 18px;
+    height: 18px;
+}
+
+.el-checkbox__input.is-checked .el-checkbox__inner::after {
+    left: 6px;
+    top: 3px;
+}
+
+

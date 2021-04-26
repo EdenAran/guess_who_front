@@ -24,4 +24,11 @@
         display: flex;
         justify-content: space-between;
     }
+    @media (max-width:$break-narrow){
+        height: 50px;
+        .logo{
+            height: 40px;
+            width: 40px;
+        }
+    }
 }
