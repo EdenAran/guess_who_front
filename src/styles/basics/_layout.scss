@@ -1,17 +1,19 @@
 .main-app {
     display: grid;
-    grid-template-columns: minmax(2rem, 1fr) minmax(auto, 1500px) minmax(2rem, 1fr);
-
+    grid-template-columns: minmax(1rem, 1fr) minmax(auto, 1500px) minmax(1rem, 1fr);
+    grid-template-rows: 90px 1fr 50px;
+    gap: 10px 5px;
+    
     >* {
         grid-column: 2;
     }
-
+    
     >.full {
         grid-column: 1 / -1;
     }
-
+    
     @media (max-width: $break-narrow){
-        display: flex;
-        flex-direction: column;
+        grid-template-rows: 50px ;
+        grid-template-columns: 1fr;
     }
 }

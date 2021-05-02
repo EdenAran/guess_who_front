@@ -1,6 +1,11 @@
 .rooms {
     grid-column: 2;
-
+    margin: 10px;
+    height: 100%;
+    overflow-y: auto;
+    h2{
+        margin-bottom: 10px;
+    }
     ul {
         list-style: none;
         display: flex;

@@ -1,5 +1,5 @@
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
-import { AppHeader } from './cmps/AppHeader';
+import { AppFooter } from './cmps/AppFooter';
 import { Game } from './views/Game';
 import { HomePage } from './views/HomePage';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { getUser } from './store/actions/userActions';
 import { getGames } from './store/actions/gameActions';
 import { socketService } from './services/socket.service';
+import { AppHeader } from './cmps/AppHeader';
 
 
 

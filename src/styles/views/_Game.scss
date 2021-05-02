@@ -1,15 +1,32 @@
 .game {
-    height: calc(100vh - 90px);
-    padding-bottom: 300px;
+    height: calc(100vh - 120px);
+    display: grid;
+    grid-template-rows: minmax(30px, auto) 60px;
+    gap: 10px;
+    align-items: center;
+    
     .actions {
+        z-index: 1;
         margin: 10px auto;
-        max-width: 500px;
+        // width: 500px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 0 10px;
+        
+        >* {
+            width: 300px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 2px;
+        }
+        
+        @media (max-width:650px) {
+            flex-direction: column;
+        }
     }
-
+    
     .players {
         display: flex;
         max-width: 700px;
@@ -17,8 +34,9 @@
         margin: 10px auto;
         justify-content: space-between;
         
-
-        &>*{
+        
+        &>* {
+            height: fit-content;
             width: 180px;
             display: flex;
             flex-direction: column;
@@ -26,5 +44,13 @@
             justify-content: center;
         }
     }
-
+    
+    .reveal-btn {
+        width: fit-content;
+        margin: auto;
+    }
+    @media (max-width:$break-narrow){
+        height: calc(100vh - 90px)
+    }
+    
 }

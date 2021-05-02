@@ -84,11 +84,16 @@ export function Game() {
             {!game && <Loader />}
             { game &&
                 <div className="game">
-                    <div className="actions">
-                    <button className="back-btn" onClick={() => history.push('/')}>Go Back</button>
-                        <button className="delete-btn" onClick={DeleteGame}>Delete game</button>
-                        <button disabled={!moves.length} onClick={undoMove}>Undo</button>
-                        <button disabled={!player} onClick={() => setIsMarking(!isMarking)}>{isMarking ? 'Stop marking' : 'Mark as maybe'}</button>
+                    <div className="actions flex">
+                        <div>
+                            <button className="back-btn" onClick={() => history.push('/')}>Go Back</button>
+                            {!player && <button className="reveal-" onClick={() => setIsShowSelectedTiles(!isShowSelectedTiles)}>{isShowSelectedTiles ? 'Hide' : 'Reveal'} Selected Tiles</button>}
+                        </div>
+                        <div>
+                            <button disabled={!player} className="delete-btn" onClick={DeleteGame}>Delete game</button>
+                            <button disabled={!moves.length} onClick={undoMove}>Undo</button>
+                            <button disabled={!player} onClick={() => setIsMarking(!isMarking)}>{isMarking ? 'Stop marking' : 'Mark as maybe'}</button>
+                        </div>
                     </div>
                     <div className="players">
                         <div>
@@ -104,7 +109,6 @@ export function Game() {
                             <TileList tiles={game[player].tiles} toggleIsShown={toggleIsShown} />
                         </>)}
                         {!player && (<>
-                            <button onClick={() => setIsShowSelectedTiles(!isShowSelectedTiles)}>{isShowSelectedTiles ? 'Hide' : 'Reveal'} Selected Tiles</button>
                             {isShowSelectedTiles && <div className="flex">
                                 <TilePreview tile={game.tiles[game.selectedTilesIdx.player1]} isMain={true} />
                                 <TilePreview tile={game.tiles[game.selectedTilesIdx.player2]} isMain={true} />

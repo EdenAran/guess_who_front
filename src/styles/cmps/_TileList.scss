@@ -1,8 +1,16 @@
 .tile-list{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    overflow-y: auto;
     height: 100%;
+    overflow-y: auto;
+    padding: 5px;
+    gap: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    @media (max-width:$break-narrow){
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+        grid-auto-rows: 90px;
+        
+    }
+
 }

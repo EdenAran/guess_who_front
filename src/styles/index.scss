@@ -13,12 +13,14 @@
 
 // CMPS
 @import './cmps/AppHeader';
+@import './cmps/AppFooter';
 @import './cmps/TileList';
 @import './cmps/TilePreview';
 @import './cmps/Loader';
 @import './cmps/HamburgerBtn';
 
 // VIEWS
+@import './views/App';
 @import './views/HomePage';
 @import './views/Game';
 @import './views/Rooms';

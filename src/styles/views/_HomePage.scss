@@ -2,6 +2,10 @@
     grid-column: 2;
     text-align: center;
 
+    .user-details{
+        margin: 10px;
+    }
+    
     .signup {
         display: flex;
         flex-direction: column;

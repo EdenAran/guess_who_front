@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { TilePreview } from "./TilePreview";
 
 export function TileList({ tiles, toggleIsShown }) {

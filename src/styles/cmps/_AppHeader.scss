@@ -1,15 +1,20 @@
 .header {
-    background-color: rgb(255, 182, 182);
+    background-color: #d8e3e7;
     height: 90px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 120px;
     grid-column: span 3;
-
+    box-shadow: 0 0 10px 2px #d8e3e7fa;
     .logo {
         width: 80px;
         height: 80px;
+        filter: opacity(0.8);
+        transition: filter 0.2s;
+        &:hover{
+            filter: opacity(1);
+        }
 
         img {
             border-radius: 50%;
